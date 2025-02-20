@@ -6,17 +6,21 @@
 //
 
 import SwiftUI
+import PencilKit
 
 struct ContentView: View {
+    
+    @State private var isHoldingPencil: Bool = false
+    @State private var canvasView = PKCanvasView()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            TextView()
+                .disabled(isHoldingPencil)
+            PencilLayerView(isHoldingPencil: $isHoldingPencil)
         }
-        .padding()
     }
+    
 }
 
 #Preview {
